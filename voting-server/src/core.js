@@ -1,4 +1,7 @@
 import {Map, fromJS} from 'immutable';
+
+export const INITIAL_STATE = Map();
+
 export function setEntries(state, entries) {
     return state.set('entries', fromJS(entries));
 }
@@ -23,7 +26,7 @@ export function next(state) {
     // let nextState = state.set('vote', Map({pair: state.get('entries').slice(0,2)}));
     // return nextState.update('entries', entries => entries.slice(2));
     const entries = state.get('entries').concat(getWinners(state));
-    if (entries.length === 1) {
+    if (entries.count() === 1) {
         return state.remove('vote').remove('entries').set('winner', entries.first());
     } else {
         return state.merge(fromJS({

@@ -22,11 +22,15 @@ function getWinners(state) {
 export function next(state) {
     // let nextState = state.set('vote', Map({pair: state.get('entries').slice(0,2)}));
     // return nextState.update('entries', entries => entries.slice(2));
-    const entries = state.get('entries');
-    return state.merge(fromJS({
-        vote: {pair: entries.take(2)},
-        entries: entries.skip(2).concat(getWinners(state))
-    }));
+    const entries = state.get('entries').concat(getWinners(state));
+    if (entries.length === 1) {
+        return state.remove('vote').remove('entries').set('winner', entries.first());
+    } else {
+        return state.merge(fromJS({
+            vote: {pair: entries.take(2)},
+            entries: entries.skip(2)
+        }));
+    }
 }
 
 export function vote(state, value) {

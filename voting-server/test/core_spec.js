@@ -54,6 +54,23 @@ describe('application logic', ()=>{
                 entries: ['c', 'e']
             }));
         });
+        it('marks the winner when done', ()=>{
+            const state = fromJS({
+                vote: {
+                    pair: ['d', 'e'],
+                    tally: {
+                        d: 2,
+                        e: 4
+                    }
+                },
+                entries: []
+            });
+            const nextState = next(state);
+            
+            expect(nextState).to.equal(fromJS({
+                winner: 'e'
+            }));
+        });
     });
     
     describe('vote', ()=>{

@@ -36,9 +36,9 @@ export function next(state) {
     }
 }
 
-export function vote(state, value) {
+export function vote(voteState, value) {
     // return state.mergeDeep(fromJS({
     //     vote: {tally: (Map()).set(value, state.get('vote').get('tally', Map()).get(value, 0) + 1)},
     // }));
-    return state.updateIn(['vote', 'tally', value], 0, tally => tally + 1);
+    return voteState.updateIn(['tally', value], 0, tally => tally + 1);
 }

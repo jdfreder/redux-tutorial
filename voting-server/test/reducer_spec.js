@@ -34,7 +34,7 @@ describe('reducer', () => {
     const action = {type: 'VOTE', entry: 'a'};
     const nextState = reducer(state, action);
 
-    expect(nextState).to.equal(vote(state, action.entry));
+    expect(nextState).to.equal(state.update('vote', voteState=>vote(voteState, action.entry)));
   });
   it('has an initial state', () => {
      const action = {type: 'SET_ENTRIES', entries: ['Trainspotting']};

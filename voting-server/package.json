@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm run test -- --watch",
-    "start": "babel-node index.js"
+    "start": "babel-node src/index.js"
   },
   "keywords": [],
   "author": "",

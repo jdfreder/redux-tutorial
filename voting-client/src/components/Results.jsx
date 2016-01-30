@@ -2,6 +2,7 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {connect} from 'react-redux';
 import Winner from './Winner';
+import * as actionCreators from '../action_creators';
 
 export const Results = React.createClass({
   mixins: [PureRenderMixin],
@@ -22,7 +23,7 @@ export const Results = React.createClass({
        {this.getPair().map(entry =>
          <div key={entry} className="entry">
            <h1>{entry}</h1>
-           <div class="voteCount">
+           <div className="voteCount">
              {this.getVotes(entry)}
            </div>
          </div>
